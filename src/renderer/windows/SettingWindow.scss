@@ -1,0 +1,34 @@
+.setting-window{
+  height: 100vh;
+  .shortcut{
+    height: 100%;
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+      width: 4px;
+      background: #d7d7d7;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #afafaf;
+    }
+    .row{
+      width: 100%;
+      margin-bottom: 16px;
+    }
+  }
+  .about-root{
+    padding: 32px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    img{
+      width: 96px;
+      height: 96px;
+      margin-bottom: 16px;
+    }
+  }
+}

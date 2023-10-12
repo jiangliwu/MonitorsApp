@@ -1,0 +1,68 @@
+.tray-window {
+
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  .content{
+    flex:1;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: 4px;
+      background: #d7d7d7;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #afafaf;
+    }
+
+    .loading{
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .displays{
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 12px 0;
+      justify-content: center;
+      height: 100%;
+      .display{
+        padding: 0 10px;
+        .name{
+          margin-left: 2px;
+          font-size: 12px;
+          font-weight: bold;
+        }
+        .value-txt{
+          font-size: 12px;
+          font-weight: bold;
+          min-width: 25px;
+        }
+      }
+    }
+  }
+
+  .menu-part{
+    .menu-icon {
+      margin-right: 16px;
+    }
+    .menu-txt{
+      font-weight: bold;
+      font-size: 13px;
+    }
+  }
+
+  .refresh{
+    position: absolute;
+    right: 16px;
+    top: 4px;
+  }
+
+}
