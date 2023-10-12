@@ -2,6 +2,7 @@ import { BrowserWindow, Tray } from 'electron';
 import { WindowContext } from './window-utils';
 import { BASE_HEIGHT, createTrayWindow, ITEM_HEIGHT } from './tray-window';
 import { createSettingWindow } from './setting-window';
+import { isMac } from '../util';
 
 class WindowHelper {
   trayWindow: BrowserWindow | undefined;
@@ -21,12 +22,8 @@ class WindowHelper {
 
     this.tray = new Tray(context.getRes('tray/trayTemplate.png'));
     this.tray.on('right-click', this.toggleTrayWindow);
-    this.tray.on('double-click', this.toggleTrayWindow);
     this.tray.on('click', (event) => {
       this.toggleTrayWindow();
-      if (this.trayWindow?.isVisible() && process.defaultApp && event.metaKey) {
-        this.trayWindow?.webContents.openDevTools({ mode: 'detach' });
-      }
     });
   };
 
@@ -49,13 +46,22 @@ class WindowHelper {
     if (!trayBounds) {
       return { x: 0, y: 0 };
     }
-    // Center window horizontally below the tray icon
-    const x = Math.round(
-      trayBounds.x + trayBounds.width / 2 - windowBounds.width / 2,
-    );
-    // Position window 4 pixels vertically below the tray icon
-    const y = Math.round(trayBounds.y + trayBounds.height + 4);
-    return { x, y };
+    
+    if(isMac()){
+      const x = Math.round(
+        trayBounds.x + trayBounds.width / 2 - windowBounds.width / 2,
+      );
+      // default bar is top of screen
+      const y = Math.round(trayBounds.y + trayBounds.height + 4);
+      return { x, y };
+    }else{
+      const x = Math.round(
+        trayBounds.x + trayBounds.width / 2 - windowBounds.width / 2,
+      );
+      // default bar of bottom of screen
+      const y = Math.round(trayBounds.y - windowBounds.height - 8);
+      return { x, y };
+    }
   };
 
   showTrayWindow = () => {
@@ -75,6 +81,9 @@ class WindowHelper {
       t.setSize(w, BASE_HEIGHT, true);
     } else {
       t.setSize(w, BASE_HEIGHT + (count - 1) * ITEM_HEIGHT, true);
+    }
+    if(this.trayWindow?.isVisible()){
+      this.showTrayWindow()
     }
   };
 

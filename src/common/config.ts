@@ -34,6 +34,6 @@ export const DefaultKBAcceleratorWin = {
 
 export const AppConfig = {
   name: 'MonitorsApp',
-  version: '1.0.1',
+  version: '1.0.2',
   email: 'jiangliwu.ipple@gmail.com',
 };

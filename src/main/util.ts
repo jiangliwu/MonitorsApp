@@ -1,6 +1,7 @@
 import { URL } from 'url';
 
 import { resolve } from 'path';
+import { platform } from 'os';
 
 export function resolveHtmlPath(htmlFileName: string) {
   if (process.env.NODE_ENV === 'development') {
@@ -11,3 +12,6 @@ export function resolveHtmlPath(htmlFileName: string) {
   }
   return `file://${resolve(__dirname, '../renderer/', htmlFileName)}`;
 }
+
+export const isWindows = ()=> platform() === 'win32';
+export const isMac = ()=> platform() === 'darwin';

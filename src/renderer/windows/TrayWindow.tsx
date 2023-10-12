@@ -137,7 +137,7 @@ export function TrayWindow() {
   const renderDisplay = (display: GetDisplayRsp, index: number) => {
     return (
       <div className="display" key={`display-${index}`}>
-        <div className="name">{`${display.displayId} (${index})`}</div>
+        <div className="name">{`${display.name} (${index})`}</div>
         <Stack spacing={2} direction="row" alignItems="center">
           <Brightness5 fontSize="small" />
           <Slider
@@ -189,7 +189,7 @@ export function TrayWindow() {
             <CircularProgress />
           </div>
         ) : (
-          <div className="displays">{displays.map(renderDisplay)}</div>
+          displays.length <= 0 ? <div className='no-display'>No DDC/CI Monitor Found</div> : <div className="displays">{displays.map(renderDisplay)}</div>
         )}
       </div>
       <div className="menu-part">

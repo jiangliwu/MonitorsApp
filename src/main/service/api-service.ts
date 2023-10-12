@@ -22,6 +22,7 @@ let displays: Display[] = [];
 export const getDisplay = async (
   req: GetDisplayReq,
 ): Promise<GetDisplayRsp[]> => {
+
   if (!req.force && cachedDisplays.length > 0) {
     console.log('returned cached displays');
     return cachedDisplays;
@@ -30,6 +31,11 @@ export const getDisplay = async (
   cachedDisplays = [];
 
   for (const display of displays) {
+
+    if (!display.serialNumber && !display.modelId && !display.modelName) {
+      continue;
+    }
+
     try {
       const l = (await display.getVcpFeature(
         VCPFeatureCode.ImageAdjustment.Luminance,
@@ -49,7 +55,6 @@ export const getDisplay = async (
       console.error(e);
     }
   }
-
   windowHelper.updateTrayWindowHeight(cachedDisplays.length);
   return cachedDisplays;
 };

@@ -7,14 +7,17 @@ Its uses [ddc/ci](https://en.wikipedia.org/wiki/Display_Data_Channel) to query a
 developed using electron.
 
 ![](i/mac-01.png)
+![](i/win-01.png)
 
 ## Platform support
 
 | Platform  | result   |
 |-----------|----------|
 | Mac Intel | Worked   |
-| Windows   | Not Test |
+| Windows   | Worked   |
 | Mac arm   | Not Test |
+
+- for Windows， you need set MontorsApp tray icon keep in taskbar
 
 ## keyboard Shortcut
 

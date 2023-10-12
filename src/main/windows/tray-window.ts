@@ -14,14 +14,16 @@ export const createTrayWindow = async (
     frame: false,
     fullscreenable: false,
     resizable: false,
-    transparent: true,
+    skipTaskbar: true,
     webPreferences: { ...context.pref, backgroundThrottling: false },
   });
   await window.loadURL(`${context.indexPath}?#tray-window`);
 
   // Hide the window when it loses focus
   window.on('blur', () => {
-    window.hide();
+    setTimeout(() => {
+      window.hide();
+    }, 100);
   });
   return window;
 };

@@ -1,11 +1,15 @@
 import path from 'path';
 import { app, WebPreferences } from 'electron';
-import { resolveHtmlPath } from './util';
+import { isMac, resolveHtmlPath } from './util';
 import { WindowContext } from './windows/window-utils';
 import { windowHelper } from './windows/window-helper';
 import './service/ipc-service';
 
-app.dock.hide();
+if (isMac()) {
+  app.dock.hide();
+}
+
+
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support');
   sourceMapSupport.install();

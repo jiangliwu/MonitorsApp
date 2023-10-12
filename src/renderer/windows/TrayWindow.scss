@@ -25,6 +25,14 @@
       align-items: center;
       justify-content: center;
     }
+    .no-display{
+      height: 100%;
+      display: flex;
+      font-size: 12px;
+      font-weight: bold;
+      align-items: center;
+      justify-content: center;
+    }
 
     .displays{
       display: flex;

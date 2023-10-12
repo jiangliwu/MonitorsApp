@@ -1,4 +1,4 @@
-import { BrowserWindow } from 'electron';
+import { BrowserWindow,Menu } from 'electron';
 import { WindowContext } from './window-utils';
 import { AppConfig } from '../../common/config';
 
@@ -17,5 +17,6 @@ export const createSettingWindow = async (
     webPreferences: context.pref,
   });
   await window.loadURL(`${context.indexPath}?#setting-window`);
+  window.removeMenu();
   return window;
 };
